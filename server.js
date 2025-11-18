@@ -50,15 +50,15 @@ app.post("/api/chat", async (req, res) => {
 
     const body = { contents };
 
-    const fetchRes = await fetch(
+  const fetchRes = await fetch(
   `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  }
+);
 
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      }
-    );
 
     const data = await fetchRes.json();
 
